@@ -2,11 +2,19 @@
 
 # Allow public-folder and specific public files
 !gamadhani
+!gamadhani/**
 !configs
+!configs/**
+!scripts
+!scripts/**
 !GaMaDHaNi.egg-info
 !__init__.py
 !GaMaDHaNi.jpg
 !generate.py
+!generate_raga.py
 !README.md
+!RAGA_CONDITIONING_README.md
+!QUICK_START_RAGA.md
+!IMPLEMENTATION_SUMMARY.md
 !requirements.txt
 !setup.py

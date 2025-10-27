@@ -50,11 +50,21 @@ def pitch_read_downsample(inputs: TensorDict,
 
         input_tokens = np.copy(norm_f0[:-1, None])
         target_tokens = np.copy(norm_f0[1:, None])
-        return {
+
+        # Include raga information if available
+        result = {
             "decoder_inputs": input_tokens,
             "decoder_targets": target_tokens,
             "sampled_sequence": norm_f0
         }
+
+        # Add global conditions (raga, tonic, singer) if present
+        if 'global_conditions' in inputs:
+            result['raga'] = inputs['global_conditions'].get('raga', -1)
+            result['tonic'] = inputs['global_conditions'].get('tonic', base_tonic)
+            result['singer'] = inputs['global_conditions'].get('singer', -1)
+
+        return result
 @gin.configurable
 def invert_pitch_read_downsample(f0,
                           min_norm_pitch: int,  
